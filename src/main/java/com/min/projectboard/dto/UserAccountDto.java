@@ -31,7 +31,6 @@ public class UserAccountDto {
                            String createdBy,
                            LocalDateTime modifiedAt,
                            String modifiedBy) {
-        this.id = id;
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
@@ -42,7 +41,15 @@ public class UserAccountDto {
         this.modifiedAt = modifiedAt;
         this.modifiedBy = modifiedBy;
     }
-
+    public static UserAccountDto of(
+                                    Long id,
+                                    String userId,
+                                    String userPassword,
+                                    String email,
+                                    String nickname,
+                                    String memo) {
+        return new UserAccountDto(id, userId, userPassword, email, nickname, memo, null, null, null, null);
+    }
     public static UserAccountDto of(Long id,
                                     String userId,
                                     String userPassword,
