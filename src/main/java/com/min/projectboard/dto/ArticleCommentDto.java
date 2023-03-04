@@ -2,6 +2,7 @@ package com.min.projectboard.dto;
 
 import com.min.projectboard.domain.Article;
 import com.min.projectboard.domain.ArticleComment;
+import com.min.projectboard.domain.UserAccount;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +37,14 @@ public class ArticleCommentDto {
 
     }
 
+    public static ArticleCommentDto of(
+                                       Long articleId,
+                                       UserAccountDto userAccountDto,
+                                       String content
+                                       ){
+        return new ArticleCommentDto(null, articleId, userAccountDto, content, null, null, null, null);
+    }
+
     public static ArticleCommentDto of(Long id,
                                        Long articleId,
                                        UserAccountDto userAccountDto,
@@ -58,10 +67,10 @@ public class ArticleCommentDto {
                 entity.getModifiedBy());
     }
 
-    public ArticleComment toEntity(Article entity){
+    public ArticleComment toEntity(Article article, UserAccount userAccount){
         return ArticleComment.of(
-                entity,
-                userAccountDto.toEntity(),
+                article,
+                userAccount,
                 content
         );
     }
