@@ -43,11 +43,12 @@ public class ArticleCommentService {
         }
     }
 
+    // 구현 미정
     public void updateArticleComment(ArticleCommentDto dto){
 
     }
 
-    public void deleteArticleComment(Long articleCommentId){
-
+    public void deleteArticleComment(Long articleCommentId, String userId){
+        articleCommentRepository.deleteByIdAndUserAccount_UserId(articleCommentId, userId);
     }
 }

@@ -9,15 +9,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("JPA 연결 테스트")
-@Import(JpaConfig.class)
+@Import(JpaArticleRepositoryTest.TestJpaConfig.class)
 @DataJpaTest
 @ActiveProfiles("testdb")
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -89,6 +94,15 @@ class JpaArticleRepositoryTest {
         // Then
         assertThat(articleRepository.count()).isEqualTo(previousArticleCount - 1);
         assertThat(articleCommentRepository.count()).isEqualTo(previousArticleCommentCount - deletedCommentSize);
+    }
+
+    @EnableJpaAuditing
+    @TestConfiguration
+    public static class TestJpaConfig{
+        @Bean
+        public AuditorAware<String> auditorAware(){
+            return () -> Optional.of("uals");
+        }
     }
 
     private UserAccount createUserAccount(){
