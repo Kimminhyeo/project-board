@@ -15,7 +15,8 @@ import java.util.Objects;
 
 @Getter
 @ToString(callSuper = true)
-@Table(indexes = {
+@Table(name = "article_comment",
+        indexes = {
         @Index(columnList = "content"),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
@@ -25,11 +26,12 @@ public class ArticleComment extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Setter
+    @JoinColumn(name = "article_id")
     @ManyToOne(optional = false)
     private Article article;
     @Setter
+    @JoinColumn(name = "user_account_id")
     @ManyToOne(optional = false)
     private UserAccount userAccount;
     @Setter

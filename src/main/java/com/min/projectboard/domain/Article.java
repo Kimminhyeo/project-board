@@ -17,7 +17,9 @@ import java.util.Set;
 
 @Getter
 @ToString(callSuper = true)
-@Table(indexes = {
+@Table(
+        name = "article",
+        indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
         @Index(columnList = "createdAt"),
@@ -30,6 +32,7 @@ public class Article extends AuditingFields{
     private Long id;
 
     @Setter
+    @JoinColumn(name = "user_account_id")
     @ManyToOne(optional = false)
     private UserAccount userAccount;
 

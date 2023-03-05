@@ -50,7 +50,6 @@ public class BoardPrincipal implements UserDetails {
 
     public UserAccountDto toDto(){
         return UserAccountDto.of(
-                1L,
                 username,
                 password,
                 email,
