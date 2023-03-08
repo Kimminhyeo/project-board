@@ -7,6 +7,9 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 public class ArticleDto {
@@ -14,7 +17,7 @@ public class ArticleDto {
     private UserAccountDto userAccountDto;
     private String title;
     private String content;
-    private String hashtag;
+    private Set<HashtagDto> hashtagDtos;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime modifiedAt;
@@ -26,7 +29,7 @@ public class ArticleDto {
                        UserAccountDto userAccountDto,
                        String title,
                        String content,
-                       String hashtag,
+                       Set<HashtagDto> hashtagDtos,
                        LocalDateTime createdAt,
                        String createdBy,
                        LocalDateTime modifiedAt,
@@ -35,7 +38,7 @@ public class ArticleDto {
         this.userAccountDto = userAccountDto;
         this.title = title;
         this.content = content;
-        this.hashtag = hashtag;
+        this.hashtagDtos = hashtagDtos;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.modifiedAt = modifiedAt;
@@ -45,20 +48,20 @@ public class ArticleDto {
     public static ArticleDto of(UserAccountDto userAccountDto,
                                 String title,
                                 String content,
-                                String hashtag) {
-        return new ArticleDto(null, userAccountDto, title, content, hashtag, null, null, null, null);
+                                Set<HashtagDto> hashtagDtos) {
+        return new ArticleDto(null, userAccountDto, title, content, hashtagDtos, null, null, null, null);
     }
 
     public static ArticleDto of(Long id,
                                 UserAccountDto userAccountDto,
                                 String title,
                                 String content,
-                                String hashtag,
+                                Set<HashtagDto> hashtagDtos,
                                 LocalDateTime createdAt,
                                 String createdBy,
                                 LocalDateTime modifiedAt,
                                 String modifiedBy){
-        return new ArticleDto(id, userAccountDto, title, content, hashtag, createdAt, createdBy, modifiedAt, modifiedBy);
+        return new ArticleDto(id, userAccountDto, title, content, hashtagDtos, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     public static ArticleDto from(Article entity){
@@ -67,7 +70,9 @@ public class ArticleDto {
                 UserAccountDto.from(entity.getUserAccount()),
                 entity.getTitle(),
                 entity.getContent(),
-                entity.getHashtag(),
+                entity.getHashtags().stream()
+                        .map(HashtagDto::from)
+                        .collect(Collectors.toUnmodifiableSet()),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
                 entity.getModifiedAt(),
@@ -79,8 +84,7 @@ public class ArticleDto {
         return Article.of(
                 userAccount,
                 title,
-                content,
-                hashtag
+                content
         );
     }
 }

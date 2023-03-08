@@ -27,11 +27,10 @@ public class ArticleComment extends AuditingFields{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Setter
-    @JoinColumn(name = "article_id")
     @ManyToOne(optional = false)
     private Article article;
     @Setter
-    @JoinColumn(name = "user_account_id")
+    @JoinColumn(name = "userId")
     @ManyToOne(optional = false)
     private UserAccount userAccount;
     @Setter
