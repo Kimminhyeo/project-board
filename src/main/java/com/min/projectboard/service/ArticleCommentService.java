@@ -7,6 +7,7 @@ import com.min.projectboard.dto.ArticleCommentDto;
 import com.min.projectboard.repository.ArticleCommentRepository;
 import com.min.projectboard.repository.ArticleRepository;
 import com.min.projectboard.repository.UserAccountRepository;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,7 @@ public class ArticleCommentService {
         }
     }
 
+    @Deprecated
     public void updateArticleComment(ArticleCommentDto dto){
         try {
             ArticleComment articleComment = articleCommentRepository.getReferenceById(dto.getId());
