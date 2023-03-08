@@ -44,14 +44,14 @@ class JpaArticleRepositoryTest {
     @Test
     void givenTestData_whenSelecting_thenWorksFine(){
         // Given
-        long previousCount = articleRepository.count();
-        UserAccount userAccount = userAccountRepository.save(UserAccount.of("uals", "pw", null, null, null));
-        Article article = Article.of(userAccount, "new article", "new content", "#spring");
 
         // When
-        articleRepository.save(article);
+        List<Article> articles = articleRepository.findAll();
+
         // Then
-        assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
+        assertThat(articles)
+                .isNotNull()
+                .hasSize(123);
     }
 
     @DisplayName("insert 테스트")
@@ -60,13 +60,13 @@ class JpaArticleRepositoryTest {
         // Given
         long previousCount = articleRepository.count();
         UserAccount userAccount = userAccountRepository.save(UserAccount.of("uals1", "pw", null, null, null));
-        Article article = Article.of(createUserAccount(), "new article", "new content", "#spring");
+        Article article = Article.of(userAccount, "new article", "new content", "#spring");
         // When
-        Article savedArticle = articleRepository.save(article);
+        articleRepository.save(article);
         // Then
         assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
     }
-    @Disabled("잠시 제외")
+
     @DisplayName("update 테스트")
     @Test
     void givenTestData_whenUpdating_thenWorksFine(){
@@ -80,7 +80,7 @@ class JpaArticleRepositoryTest {
         // Then
         assertThat(savedArticle).hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
     }
-    @Disabled("잠시 제외")
+
     @DisplayName("delete 테스트")
     @Test
     void givenTestData_whenDeleting_thenWorksFine(){
