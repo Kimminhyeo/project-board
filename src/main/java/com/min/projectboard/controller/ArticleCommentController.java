@@ -28,10 +28,10 @@ public class ArticleCommentController {
     }
 
     @PostMapping("/{commentId}/delete")
-    public String deleteArticleComment(@PathVariable Long articleCommentId,
+    public String deleteArticleComment(@PathVariable Long commentId,
                                        @AuthenticationPrincipal BoardPrincipal boardPrincipal,
                                        Long articleId){
-        articleCommentService.deleteArticleComment(articleCommentId, boardPrincipal.getUsername());
+        articleCommentService.deleteArticleComment(commentId, boardPrincipal.getUsername());
 
         return "redirect:/articles/" + articleId;
     }
