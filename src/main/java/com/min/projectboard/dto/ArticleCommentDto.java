@@ -29,6 +29,9 @@ public class ArticleCommentDto {
                               String createdBy,
                               LocalDateTime modifiedAt,
                               String modifiedBy) {
+        this.id = id;
+        this.articleId = articleId;
+        this.userAccountDto = userAccountDto;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.modifiedAt = modifiedAt;

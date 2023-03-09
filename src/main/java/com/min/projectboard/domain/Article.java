@@ -19,7 +19,6 @@ import java.util.Set;
 @Getter
 @ToString(callSuper = true)
 @Table(
-        name = "article",
         indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "createdAt"),

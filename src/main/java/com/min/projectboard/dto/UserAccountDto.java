@@ -30,6 +30,7 @@ public class UserAccountDto {
                            String createdBy,
                            LocalDateTime modifiedAt,
                            String modifiedBy) {
+        this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
         this.nickname = nickname;

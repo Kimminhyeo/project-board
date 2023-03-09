@@ -26,18 +26,18 @@ import static org.assertj.core.api.Assertions.*;
 @DisplayName("JPA 연결 테스트")
 @Import(JpaArticleRepositoryTest.TestJpaConfig.class)
 @DataJpaTest
-//@ActiveProfiles("testdb")
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class JpaArticleRepositoryTest {
     private final ArticleRepository articleRepository;
     private final ArticleCommentRepository articleCommentRepository;
     private final UserAccountRepository userAccountRepository;
     private final HashtagRepository hashtagRepository;
 
-    public JpaArticleRepositoryTest(@Autowired ArticleRepository articleRepository,
-                                    @Autowired ArticleCommentRepository articleCommentRepository,
-                                    @Autowired UserAccountRepository userAccountRepository,
-                                    @Autowired HashtagRepository hashtagRepository) {
+    JpaArticleRepositoryTest(
+            @Autowired ArticleRepository articleRepository,
+            @Autowired ArticleCommentRepository articleCommentRepository,
+            @Autowired UserAccountRepository userAccountRepository,
+            @Autowired HashtagRepository hashtagRepository
+    ) {
         this.articleRepository = articleRepository;
         this.articleCommentRepository = articleCommentRepository;
         this.userAccountRepository = userAccountRepository;

@@ -23,8 +23,8 @@ public class HashtagService {
         return new HashSet<>(hashtagRepository.findByHashtagNameIn(hashtagNames));
     }
 
-    public Set<String> parseHashtagNames(String content){
-        if(content == null){
+    public Set<String> parseHashtagNames(String content) {
+        if (content == null) {
             return Set.of();
         }
 
@@ -45,4 +45,5 @@ public class HashtagService {
             hashtagRepository.delete(hashtag);
         }
     }
+
 }

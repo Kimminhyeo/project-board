@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Getter
 @ToString
-@Table(name = "user_account",
+@Table(
         indexes = {
         @Index(columnList = "userId", unique = true),
         @Index(columnList = "email", unique = true),

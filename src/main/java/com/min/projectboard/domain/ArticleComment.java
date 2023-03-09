@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Getter
 @ToString(callSuper = true)
-@Table(name = "article_comment",
+@Table(
         indexes = {
         @Index(columnList = "content"),
         @Index(columnList = "createdAt"),
