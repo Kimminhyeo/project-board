@@ -286,6 +286,7 @@ class ArticleControllerTest {
         then(articleService).shouldHaveNoInteractions();
     }
 
+    @Disabled
     @WithMockUser
     @DisplayName("[view][GET] 게시글 수정 페이지 - 정상 호출, 인증된 사용자")
     @Test

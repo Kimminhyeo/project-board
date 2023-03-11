@@ -16,8 +16,7 @@ import static org.mockito.BDDMockito.given;
 @Import(SecurityConfig.class)
 public class TestSecurityConfig {
 
-    @MockBean
-    private UserAccountService userAccountService;
+    @MockBean private UserAccountService userAccountService;
 
     @BeforeTestMethod
     public void securitySetUp() {
@@ -37,4 +36,5 @@ public class TestSecurityConfig {
                 "test memo"
         );
     }
+
 }

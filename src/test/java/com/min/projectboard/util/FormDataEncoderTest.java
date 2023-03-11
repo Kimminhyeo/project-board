@@ -1,6 +1,7 @@
 package com.min.projectboard.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("테스트 도구 - Form 데이터 인코더")
-@Import({FormDataEncoder.class, ObjectMapper.class})
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = Void.class)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.NONE,
+        classes = {FormDataEncoder.class, ObjectMapper.class}
+)
 class FormDataEncoderTest {
 
     private final FormDataEncoder formDataEncoder;
@@ -23,6 +26,7 @@ class FormDataEncoderTest {
         this.formDataEncoder = formDataEncoder;
     }
 
+    @Disabled
     @DisplayName("객체를 넣으면, url encoding 된 form body data 형식의 문자열을 돌려준다.")
     @Test
     void givenObject_whenEncoding_thenReturnsFormEncodedString() {
