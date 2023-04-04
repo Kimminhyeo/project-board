@@ -20,6 +20,7 @@ Spring Boot
 * Rest Repositories HAL Explorer
 * Thymeleaf
 * Spring Security
+* Spring Security OAuth 2 Client
 * H2 Database
 * MySQL Driver
 * Lombok
